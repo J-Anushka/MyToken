@@ -53,7 +53,7 @@ Once you are on the Remix website, create a new file by clicking on the "+" icon
 
  }
 
-- To mompile the code:
+- To compile the code:
     - Click on the "Solidity Compiler" tab in the left-hand sidebar
     - Set the "Compiler" option to "0.8.4" (or another compatible version)
     - Click on the "Compile MyToken.sol" button
