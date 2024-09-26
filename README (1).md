@@ -1,34 +1,45 @@
-# ETHProofBeginner-Assignment
+/ SPDX-License-Identifier: MIT
+pragma solidity ^0.8.18;
 
-# MyToken Contract
-# Overview
-MyToken is a simple ERC20-like smart contract deployed on the Ethereum blockchain. It allows the creation of a new cryptocurrency with basic functionalities such as minting and burning tokens. The contract is written in Solidity and is compatible with Solidity version >=0.8.2 <0.9.0.
-
-# Requirements
-# 1. Public Variables
-
-tokenName: A string that stores the name of the token.
-tokenAbbrv: A string that stores the abbreviation of the token.
-totalSupply: An unsigned integer that stores the total supply of the token.
-# 2. Mapping
-
-balance: A mapping that associates addresses with their token balances.
-#3. Functions
-
-mint: A function that increases the total supply of tokens and updates the balance of a specified address.
-burn: A function that decreases the total supply of tokens and updates the balance of a specified address, with a condition to ensure the address has enough tokens to burn.
-# Contract Code
-// SPDX-License-Identifier: MIT
-pragma solidity >=0.8.2 <0.9.0;
+/*
+       REQUIREMENTS
+    1. Your contract will have public variables that store the details about your coin (Token Name, Token Abbrv., Total Supply)
+    2. Your contract will have a mapping of addresses to balances (address => uint)
+    3. You will have a mint function that takes two parameters: an address and a value. 
+       The function then increases the total supply by that number and increases the balance 
+       of the “sender” address by that amount
+    4. Your contract will have a burn function, which works the opposite of the mint function, as it will destroy tokens. 
+       It will take an address and value just like the mint functions. It will then deduct the value from the total supply 
+       and from the balance of the “sender”.
+    5. Lastly, your burn function should have conditionals to make sure the balance of "sender" is greater than or equal 
+       to the amount that is supposed to be burned.
+*/
 
 contract MyToken {
 
     // public variables here
-    string public tokenName= "JeetCoin";
-    string public tokenAbbrv="Jeet";
-    uint public totalSupply=0;
+    string public myTokenName = "GALAXY";
+    string public MyTokenAbbrv = "GLX";
+    uint public TotalSupply = 0;
 
     // mapping variable here
+    mapping(address => uint) public MyTokenBalance;
+
+    // mint function
+    function mint (address _address, uint _value) public {
+        TotalSupply += _value;
+        MyTokenBalance[_address] += _value;
+    }
+
+    // burn function
+    function burn (address _address, uint _value) public {
+        if (MyTokenBalance[_address] >= _value)
+        TotalSupply -= _value;
+        MyTokenBalance[_address] -= _value;
+    }
+
+}
+
     mapping(address => uint) public balance;
 
     // mint function
@@ -45,6 +56,7 @@ contract MyToken {
         }
     }
 }
+/
 
 # Functions Description
 # mint
